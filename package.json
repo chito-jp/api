@@ -1,0 +1,25 @@
+{
+    "name": "api",
+    "version": "0.0.1",
+    "main": "app.js",
+    "license": "CC-BY-4.0",
+    "dependencies": {
+      "express": "^4.21.2",
+      "cors": "^2.8.5",
+      "axios": "^1.7.9"
+    },
+    "description": "",
+    "engines": {
+      "node": "16.x"
+    },
+    "author": "ちとせあめ",
+    "private": false,
+    "devDependencies": {},
+    "scripts": {
+      "start": "node app.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+      "node"
+    ]
+  }
