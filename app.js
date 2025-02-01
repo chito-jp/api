@@ -16,7 +16,12 @@ app.get("/",(req,res)=>{
 });
 
 app.get("/api/stream/:id",async(req,res)=>{
-  res.send(await yt.getStreamUrl(req.params.id));
+    try{
+        const streamUrl=await yt.getStreamUrl(req.params.id);
+        res.send(streamUrl);
+    }catch(e){
+        res.send("すべてのインスタンスでリクエストが失敗しました");
+    }
 });
 
 const PORT=process.env.PORT || 7777;
