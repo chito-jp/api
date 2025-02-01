@@ -3,6 +3,7 @@ const cors=require("cors");
 const axios=require("axios");
 const yt=require("./utils/yt");
 const ejt=require("./middleware/ejt");
+const router=require("./routes/health");
 
 let todo;
 (async()=>{todo=await axios.get("https://raw.githubusercontent.com/chito-jp/todo/refs/heads/main/index.html").then(res=>res.data)})();
@@ -10,6 +11,7 @@ let todo;
 const app=express();
 app.use(cors());
 app.use(ejt("views"))
+app.use("/health",router)
 
 app.get("/",(req,res)=>{
   res.set("Content-Type","text/html").send(todo);
