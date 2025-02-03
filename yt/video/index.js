@@ -1,5 +1,5 @@
 const comment=require("./comment");
-const detail=require("./detail");
+const detail=require("./details");
 const {getHTML}=require("./utils/requester");
 
 const video={
