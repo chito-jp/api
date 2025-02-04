@@ -21,7 +21,7 @@ app.get("/",(req,res)=>{
 app.get("/api/video/:id",async(req,res)=>{
     try{
         res.json(await yt.video.getInfo(req.params.id));
-    catch(e){
+    }catch(e){
         res.send("リクエストに失敗しました");
     }
 });
@@ -29,7 +29,7 @@ app.get("/api/video/:id",async(req,res)=>{
 app.get("/api/comments/:id",async(req,res)=>{
     try{
         res.json(await yt.video.getComment(req.params.id));
-    catch(e){
+    }catch(e){
         res.send("リクエストに失敗しました");
     }
 });
@@ -37,7 +37,7 @@ app.get("/api/comments/:id",async(req,res)=>{
 app.get("/inv/video/:id",async(req,res)=>{
     try{
         res.json(await inv.getVideoInfo(req.params.id));
-    catch(e){
+    }catch(e){
         res.send("リクエストに失敗しました");
     }
 });
@@ -45,7 +45,7 @@ app.get("/inv/video/:id",async(req,res)=>{
 app.get("/inv/stream/:id",async(req,res)=>{
     try{
         res.json(await inv.getStreamUrl(req.params.id));
-    catch(e){
+    }catch(e){
         res.send("リクエストに失敗しました");
     }
 });
