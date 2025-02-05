@@ -1,5 +1,5 @@
 {
-    "name": "api",
+    "name": "chitose-tube",
     "version": "0.0.1",
     "main": "app.js",
     "license": "CC-BY-4.0",
@@ -9,7 +9,7 @@
       "axios": "^1.7.9",
       "miniget": "^4.2.3"
     },
-    "description": "",
+    "description": "プライバシーを大切にしたYoutube代替フロントエンド",
     "engines": {
       "node": "16.x"
     },

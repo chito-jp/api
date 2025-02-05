@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: chitose
+    name: Chitose-Tube
     runtime: node
     region: singapore
     plan: free
