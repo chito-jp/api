@@ -12,6 +12,15 @@ router.get("/video/:id",async(req,res)=>{
     }
 });
 
+router.get("/related/:id",async(req,res)=>{
+  try{
+    const relatedVideos=await yt.video.getRelatedVideos(req.params.id);
+    res.json(relatedVideos);
+  }catch(e){
+    res.send("リクエストに失敗しました");
+  }
+});
+
 router.get("/comments/:id",async(req,res)=>{
     try{
         res.json(await yt.video.getComment(req.params.id));

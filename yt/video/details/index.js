@@ -12,7 +12,15 @@ class detail{
     const ytInitialData=detail.getYtInitialData(html);
     if(!ytInitialData)return null;
     const videoDetails=parser.parseInitialData(ytInitialData);
-    return videoDetails;
+    return {videoDetails};
+  }
+  
+  static async getRelatedVideos(id){
+    const html=await getHTML(id);
+    const ytInitialData=detail.getYtInitialData(html);
+    if(!ytInitialData)return null;
+    const relatedVideos=parser.parseRelatedVideos(ytInitialData);
+    return relatedVideos;
   }
 
   static getYtInitialData(body){
@@ -36,6 +44,7 @@ class detail{
     }
     return {};
   }
+  
 }
 
 module.exports=detail;

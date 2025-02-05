@@ -19,16 +19,22 @@ class parser{
   if (secondaryRenderer) {
     const owner = secondaryRenderer.videoSecondaryInfoRenderer.owner.videoOwnerRenderer;
     videoDetails.owner={};
-    videoDetails.owner.name = owner.title.runs[0].text;
-    videoDetails.owner.channelId = owner.navigationEndpoint.browseEndpoint.browseId;
+    videoDetails.owner.name=owner.title.runs[0].text;
+    videoDetails.owner.channelId=owner.navigationEndpoint.browseEndpoint.browseId;
     videoDetails.owner.avatarUrl=owner.thumbnail.thumbnails.at(-1).url
   }
   videoDetails.description = secondaryRenderer?.videoSecondaryInfoRenderer?.attributedDescription?.content||"説明なし";
+
+  videoDetails.relatedVideos=parser.parseRelatedVideos(initialData);
+  return videoDetails;
+}
+
+static parseRelatedVideos(initialData){
   const relatedVideos=[];
   const secondaryResults=initialData.contents.twoColumnWatchNextResults.secondaryResults?.secondaryResults?.results||[];
 
   for (const video of secondaryResults) {
-    if (video.compactVideoRenderer) {
+    if(video.compactVideoRenderer) {
       const {compactVideoRenderer}=video;
       relatedVideos.push({
         title: compactVideoRenderer.title.simpleText,
@@ -46,10 +52,8 @@ class parser{
       });
     }
   }
-
-  videoDetails.relatedVideos=relatedVideos;
-  return videoDetails;
-  }
+  return relatedVideos;
+}
 }
 
 module.exports=parser;
