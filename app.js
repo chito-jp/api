@@ -9,7 +9,6 @@ const miniget=require("miniget");
 
 const user_agent=process.env.USER_AGENT||"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36";
 
-
 let todo;
 (async()=>{todo=await axios.get("https://raw.githubusercontent.com/chito-jp/todo/refs/heads/main/index.html").then(res=>res.data)})();
 
@@ -38,6 +37,20 @@ app.get("/api/comments/:id",async(req,res)=>{
     }
 });
 
+app.get("/api/thumbnail/:id",async(req,res)=>{
+    const thumbnailUrl="https://i.ytimg.com/vi/${req.params.id}/hqdefault.jpg";
+    let stream=miniget(thumbnailUrl,{
+        headers: {
+            "user-agent": user_agent
+        }
+    });
+    stream.on("error", e => {
+        console.error(e);
+        res.status(500).send(e.message);
+    });
+    stream.pipe(res);
+});
+
 app.get("/inv/video/:id",async(req,res)=>{
     try{
         res.json(await inv.getVideoInfo(req.params.id));
@@ -45,20 +58,6 @@ app.get("/inv/video/:id",async(req,res)=>{
         res.send("リクエストに失敗しました");
     }
 });
-
-app.get("/api/thumbnail/:id",async(req,res)=>{
-    const thumbnailUrl="https://i.ytimg.com/vi/${req.params.id}/hqdefault.jpg";
-    let stream=miniget(thumbnailUrl,{
-          headers: {
-              "user-agent": user_agent
-          }
-      });
-    stream.on("error", e => {
-          console.error(e);
-          res.status(500).send(e.message);
-      });
-      stream.pipe(res);
-  });
 
 app.get("/inv/stream/:id",async(req,res)=>{
     try{
