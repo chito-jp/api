@@ -5,6 +5,7 @@ const yt=require("./yt");
 const inv=require("./inv")
 const ejt=require("./middleware/ejt");
 const router=require("./routes/health");
+const miniget=require("miniget");
 
 let todo;
 (async()=>{todo=await axios.get("https://raw.githubusercontent.com/chito-jp/todo/refs/heads/main/index.html").then(res=>res.data)})();
@@ -41,6 +42,20 @@ app.get("/inv/video/:id",async(req,res)=>{
         res.send("リクエストに失敗しました");
     }
 });
+
+app.get("/api/thumbnail/:id",async(req,res)=>{
+    const thumbnailUrl="https://i.ytimg.com/vi/${req.params.id}/hqdefault.jpg";
+    let stream=miniget(thumbnailUrl,{
+          headers: {
+              "user-agent": user_agent
+          }
+      });
+    stream.on("error", e => {
+          console.error(e);
+          res.status(500).send(e.message);
+      });
+      stream.pipe(res);
+  });
 
 app.get("/inv/stream/:id",async(req,res)=>{
     try{

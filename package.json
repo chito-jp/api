@@ -6,7 +6,8 @@
     "dependencies": {
       "express": "^4.21.2",
       "cors": "^2.8.5",
-      "axios": "^1.7.9"
+      "axios": "^1.7.9",
+      "miniget": "^4.2.3"
     },
     "description": "",
     "engines": {
