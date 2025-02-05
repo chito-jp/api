@@ -38,7 +38,7 @@ app.get("/api/comments/:id",async(req,res)=>{
 });
 
 app.get("/api/thumbnail/:id",async(req,res)=>{
-    const thumbnailUrl="https://i.ytimg.com/vi/${req.params.id}/hqdefault.jpg";
+    const thumbnailUrl=`https://i.ytimg.com/vi/${req.params.id}/hqdefault.jpg`;
     let stream=miniget(thumbnailUrl,{
         headers: {
             "user-agent": user_agent
