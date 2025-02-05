@@ -1,0 +1,9 @@
+authors = ["ちとせあめ"]
+description = ""
+language = "javascript"
+manifest_version = 3
+name = ""
+
+[scripts]
+build = "npm run build"
+post_init = "npm install"
