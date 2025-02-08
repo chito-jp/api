@@ -1,9 +1,6 @@
 const express=require("express");
 const cors=require("cors");
 const axios=require("axios");
-const healthRouter=require("./routes/health");
-const apiRouter=require("./routes/apiRoutes");
-const invRouter=require("./routes/invRoutes");
 
 let todo;
 (async()=>{todo=await axios.get("https://raw.githubusercontent.com/chito-jp/todo/refs/heads/main/index.html").then(res=>res.data)})();
@@ -22,9 +19,10 @@ async function request(url,option){
 const app=express();
 app.use(cors());
 app.set("view engine","ejs")
-app.use("/health",healthRouter);
-app.use("/api",apiRouter);
-app.use("/inv",invRouter)
+app.use("/health",require("./routes/health"));
+app.use("/api",require("./routes/apiRoutes"));
+app.use("/inv",require("./routes/invRoutes"));
+app.use("/freedns",require("./routes/freednsRoutes"));
 
 app.get("/",(req,res)=>{
   res.set("Content-Type","text/html").send(todo);
