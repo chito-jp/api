@@ -1,5 +1,5 @@
 {
-    "name": "chitose-tube",
+    "name": "app",
     "version": "0.0.1",
     "main": "app.js",
     "license": "CC-BY-4.0",
@@ -7,14 +7,14 @@
       "express": "^4.21.2",
       "cors": "^2.8.5",
       "axios": "^1.7.9",
-      "miniget": "^4.2.3"
+      "miniget": "^4.2.3",
+      "ejs": "^3.1.10"
     },
-    "description": "プライバシーを大切にしたYoutube代替フロントエンド",
+    "description": "使えそうなものを詰め込んだwebapp",
     "engines": {
       "node": "16.x"
     },
     "author": "ちとせあめ",
-    "private": false,
     "devDependencies": {},
     "scripts": {
       "start": "node app.js",

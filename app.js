@@ -1,7 +1,6 @@
 const express=require("express");
 const cors=require("cors");
 const axios=require("axios");
-const ejt=require("./middleware/ejt");
 const healthRouter=require("./routes/health");
 const apiRouter=require("./routes/apiRoutes");
 const invRouter=require("./routes/invRoutes");
@@ -22,7 +21,7 @@ async function request(url,option){
 
 const app=express();
 app.use(cors());
-app.use(ejt("views"))
+app.set("view engine","ejs")
 app.use("/health",healthRouter);
 app.use("/api",apiRouter);
 app.use("/inv",invRouter)

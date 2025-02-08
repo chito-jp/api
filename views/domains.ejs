@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SearchDNS</title>
+</head>
+<body>
+    <div class="controls">
+        <span>一気に開く</span><br>
+        <label for="num">開く個数</label><input type="number"id="num" value="5">
+        <label for="btn">開く</label><input type="button" value="Go!" onclick="go()">
+        <label for="checkbox">開いたリンクを削除する</label><input type="checkbox" id="checkbox">
+    </div>
+    <%- domains %>
+    <script>
+      function go(){
+        const n=document.querySelector("#num").value;
+        const d=document.querySelector("#checkbox").checked;
+        const domains=new Set();
+        document.querySelectorAll("a").forEach(el=>domains.add(el.href));
+        let i=0;
+        for(const domain of domains){
+          if(i>=n)return;
+          try{
+            window.open(domain);
+            if(d)document.querySelector(`a[href="${domain}"]`).remove();
+          }catch(e){
+            console.error(e);
+          }
+          i++;
+        }
+      }
+      document.querySelectorAll("a").forEach(el=>el.addEventListener("click",()=>{if(document.querySelector("#checkbox").checked)el.remove()}))
+    </script>
+</body>
+</html>
